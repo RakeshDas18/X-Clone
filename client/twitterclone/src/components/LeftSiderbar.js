@@ -1,6 +1,6 @@
 import React from 'react'
 
-function LeftSiderBar() {
+function LeftSiderbar() {
   return (
     <div>
       
@@ -8,4 +8,4 @@ function LeftSiderBar() {
   )
 }
 
-export default LeftSiderBar
+export default LeftSiderbar

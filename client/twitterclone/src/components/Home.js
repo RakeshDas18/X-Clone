@@ -1,12 +1,12 @@
 import React from 'react'
-import LeftSiderBar from './LeftSiderBar'
+import LeftSiderbar from './LeftSiderbar'
 import Feed from './Feed'
 import RightSidebar from './RightSidebar'
 
 function Home() {
   return (
     <div>
-      <LeftSiderBar/>
+      <LeftSiderbar/>
       <Feed/>
       <RightSidebar/>
     </div>
