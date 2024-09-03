@@ -1,10 +1,10 @@
 import React from "react";
-import { MdHome } from "react-icons/md";
-import { FaHashtag } from "react-icons/fa";
-import { IoMdNotifications } from "react-icons/io";
-import { FaBookmark } from "react-icons/fa";
+import { GoHome } from "react-icons/go";
+import { GoHash } from "react-icons/go";
+import { IoMdNotificationsOutline } from "react-icons/io";
+import { FaRegBookmark } from "react-icons/fa";
 import { CgProfile } from "react-icons/cg";
-import { IoLogOut } from "react-icons/io5";
+import { MdOutlineLogout } from "react-icons/md";
 
 function LeftSiderbar() {
   return (
@@ -16,25 +16,25 @@ function LeftSiderbar() {
         <div className="my-4">
           <div className="flex items-center my-2 px-4 py-2 hover:bg-gray-200 rounded-full hover:cursor-pointer">
             <div>
-              <MdHome size={"24px"}/>
+              <GoHome size={"24px"}/>
             </div>
             <h1 className="font-bold text-lg ml-2">Home</h1>
           </div>
           <div className="flex items-center my-2 px-4 py-2 hover:bg-gray-200 rounded-full hover:cursor-pointer">
             <div>
-              <FaHashtag size={"24px"}/>
+              <GoHash size={"24px"}/>
             </div>
             <h1 className="font-bold text-lg ml-2">Explore</h1>
           </div>
           <div className="flex items-center my-2 px-4 py-2 hover:bg-gray-200 rounded-full hover:cursor-pointer">
             <div>
-              <IoMdNotifications size={"24px"}/>
+              <IoMdNotificationsOutline size={"24px"}/>
             </div>
             <h1 className="font-bold text-lg ml-2">Notification</h1>
           </div>
           <div className="flex items-center my-2 px-4 py-2 hover:bg-gray-200 rounded-full hover:cursor-pointer">
             <div>
-              <FaBookmark size={"23px"}/>
+              <FaRegBookmark size={"23px"}/>
             </div>
             <h1 className="font-bold text-lg ml-2">Bookmarks</h1>
           </div>
@@ -46,7 +46,7 @@ function LeftSiderbar() {
           </div>
           <div className="flex items-center my-2 px-4 py-2 hover:bg-gray-200 rounded-full hover:cursor-pointer">
             <div>
-              <IoLogOut size={"24px"}/>
+              <MdOutlineLogout size={"24px"}/>
             </div>
             <h1 className="font-bold text-lg ml-2">Logout</h1>
           </div>
