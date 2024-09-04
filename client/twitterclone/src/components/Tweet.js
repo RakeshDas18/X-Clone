@@ -6,7 +6,7 @@ import { BiComment } from "react-icons/bi";
 
 function Tweet() {
   return (
-    <div>
+    <div className="border-b border-gray-200">
       <div>
         <div className="flex p-4">
           <Avatar
