@@ -25,7 +25,7 @@ function RightSidebar() {
                   round={true}
                 />
               </div>
-              <div className="ml-2">
+              <div className="ml-3">
                 <h1 className="font-bold">Rakesh</h1>
                 <p className="text-sm">RakeshDas_18</p>
               </div>
