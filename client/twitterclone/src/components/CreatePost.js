@@ -19,11 +19,11 @@ function CreatePost() {
             <div>
             <Avatar src="https://pbs.twimg.com/profile_images/1755129211763761152/usD2zEBu_bigger.jpg" size="40" round={true} />
             </div>
-            <input className="w-full outline-none border-none text-lg ml-2" type="text" placeholder="What is happening?!"/>
+            <input className="w-full outline-none border-none text-xl ml-2" type="text" placeholder="What is happening?!"/>
           </div>
           <div className="flex items-center justify-between p-4 border-b border-gray-300">
             <div>
-              <CiImageOn/>
+              <CiImageOn size="24px"/>
             </div>
             <button className="bg-[#1D9BF0] px-4 py-1 text-lg border-none rounded-full text-white">POST</button>
           </div>
