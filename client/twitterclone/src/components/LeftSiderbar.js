@@ -5,6 +5,7 @@ import { IoMdNotificationsOutline } from "react-icons/io";
 import { FaRegBookmark } from "react-icons/fa";
 import { CgProfile } from "react-icons/cg";
 import { MdOutlineLogout } from "react-icons/md";
+import { Link } from "react-router-dom";
 
 function LeftSiderbar() {
   return (
@@ -14,12 +15,12 @@ function LeftSiderbar() {
           <img src="X-logo.png" alt="X-logo" width={"60px"} />
         </div>
         <div className="my-4">
-          <div className="flex items-center my-2 px-4 py-2 hover:bg-gray-200 rounded-full hover:cursor-pointer">
+          <Link to="/" className="flex items-center my-2 px-4 py-2 hover:bg-gray-200 rounded-full hover:cursor-pointer">
             <div>
               <GoHome size={"24px"}/>
             </div>
             <h1 className="font-bold text-lg ml-2">Home</h1>
-          </div>
+          </Link>
           <div className="flex items-center my-2 px-4 py-2 hover:bg-gray-200 rounded-full hover:cursor-pointer">
             <div>
               <GoHash size={"24px"}/>
@@ -38,12 +39,12 @@ function LeftSiderbar() {
             </div>
             <h1 className="font-bold text-lg ml-2">Bookmarks</h1>
           </div>
-          <div className="flex items-center my-2 px-4 py-2 hover:bg-gray-200 rounded-full hover:cursor-pointer">
+          <Link to="/profile" className="flex items-center my-2 px-4 py-2 hover:bg-gray-200 rounded-full hover:cursor-pointer">
             <div>
               <CgProfile size={"24px"}/>
             </div>
             <h1 className="font-bold text-lg ml-2">Profile</h1>
-          </div>
+          </Link>
           <div className="flex items-center my-2 px-4 py-2 hover:bg-gray-200 rounded-full hover:cursor-pointer">
             <div>
               <MdOutlineLogout size={"24px"}/>
