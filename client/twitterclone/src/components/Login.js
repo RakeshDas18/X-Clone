@@ -15,7 +15,7 @@ function Login() {
           <div className="my-5">
             <h1 className="font-bold text-6xl">Happening Now</h1>
           </div>
-          <h1 className="mt-4 mb-2 text-2xl font-bold">Login</h1>
+          <h1 className="mt-4 mb-2 text-2xl font-bold">{isLogin ? "Login" : "Register"}</h1>
           <form className="flex flex-col w-[70%]">
             {!isLogin && (
               <>
