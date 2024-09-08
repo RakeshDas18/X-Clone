@@ -1,6 +1,6 @@
 import React from "react";
 import Avatar from "react-avatar"
-import { CiImageOn } from "react-icons/ci";
+import { CiImageOn } from "react-icons/ci"
 
 function CreatePost() {
   return (
