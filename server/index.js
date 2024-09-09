@@ -7,7 +7,7 @@ dotenv.config({
     path:".env"
 })
 
-databaseConnection()
+databaseConnection();
 const app = express();
 
 app.listen(process.env.PORT, () => {
