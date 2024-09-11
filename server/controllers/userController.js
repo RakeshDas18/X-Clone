@@ -81,3 +81,10 @@ export const Login = async (req, res) => {
         console.log(error);        
     }
 }
+
+export const logout = (req, res) => {
+    return res.cookie("token", "", {expiresIn:new Date(Date.now())}).json({
+        message:"User logged out successfully!",
+        success:true
+    })
+}
