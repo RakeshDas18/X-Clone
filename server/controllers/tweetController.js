@@ -36,3 +36,25 @@ export const deleteTweet = async (req, res) => {
         console.log(error);        
     }
 }
+
+export const likeOrDislike = async (req, res) => {
+    try {
+        const loggedInUserId = req.body.id;
+        const tweetId = req.params.id;
+        const tweet = await Tweet.findById(tweetId);
+        if(tweet.like.includes(loggedInUserId)){
+            await Tweet.findByIdAndUpdate(tweetId, {$pull:{like:loggedInUserId}})
+            return res.status(200).json({
+                message:"Tweet disliked!"
+            })
+        } else {
+            await Tweet.findByIdAndUpdate(tweetId, {$push:{like:loggedInUserId}})
+            return res.status(200).json({
+                message:"Tweet liked!"
+            })
+        }
+
+    } catch (error) {
+        console.log(error);        
+    }
+}
