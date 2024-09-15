@@ -1,11 +1,13 @@
 import express from "express"
-import { bookmark, Login, logout, Register } from "../controllers/userController.js";
+import isAuthenticated from "../config/auth.js";
+import { bookmark, getMyProfile, Login, logout, Register } from "../controllers/userController.js";
 
 const router = express.Router();
 
 router.route("/register").post(Register);
 router.route("/login").post(Login);
 router.route("/logout").get(logout);
-router.route("/bookmark/:id").put(bookmark);
+router.route("/bookmark/:id").put(isAuthenticated, bookmark);
+router.route("/profile/:id").get(isAuthenticated, getMyProfile);
 
 export default router
