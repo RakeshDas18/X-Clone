@@ -113,7 +113,7 @@ export const bookmark = async (req, res) => {
 export const getMyProfile = async (req, res) => {
     try {
         const id = req.params.id;
-        const user = await User.findById(id);
+        const user = await User.findById(id).select("-password");
         return res.status(200).json({
             user,
         })
