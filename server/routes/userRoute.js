@@ -1,6 +1,6 @@
 import express from "express"
 import isAuthenticated from "../config/auth.js";
-import { bookmark, getMyProfile, getOtherUsers, Login, logout, Register } from "../controllers/userController.js";
+import { bookmark, follow, getMyProfile, getOtherUsers, Login, logout, Register } from "../controllers/userController.js";
 
 const router = express.Router();
 
@@ -10,5 +10,6 @@ router.route("/logout").get(logout);
 router.route("/bookmark/:id").put(isAuthenticated, bookmark);
 router.route("/profile/:id").get(isAuthenticated, getMyProfile);
 router.route("/otheruser/:id").get(isAuthenticated, getOtherUsers);
+router.route("/follow/:id").post(isAuthenticated, follow);
 
 export default router
