@@ -181,6 +181,6 @@ export const unfollow = async (req, res) => {
             message:`${loggedInUser.name} unfollowed to ${user.name}`
         })
     } catch (error) {
-        console.log(error);        
+        console.log(error);
     }
 }
