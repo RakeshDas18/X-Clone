@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import axios from "axios";
 import {USER_API_END_POINT} from "./../utils/constant.js"
+import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 
 function Login() {
   const [isLogin, setIsLogin] = useState(true);
@@ -9,23 +11,40 @@ function Login() {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const navigate = useNavigate();
 
   const submitHandler = async (e) => {
     e.preventDefault();
     if(isLogin){
       try {
-        const res = await axios.post(`${USER_API_END_POINT}/login`, {email, password})
-        console.log(res)
+        const res = await axios.post(`${USER_API_END_POINT}/login`, {email, password}, {
+          headers:{
+            'Content-type':"application/json"
+          },
+          withCredentials:true
+        })
+        if(res.data.success){
+          setIsLogin(true)
+          navigate("/")
+          toast.success(res.data.message)
+        }
       } catch (error) {
-        console.log(error);        
+        toast.success(error.response.data.message)
       }
 
     } else {
       try {
-        const res = await axios.post(`${USER_API_END_POINT}/register`, {name, username, email, password})
-        console.log(res)
+        const res = await axios.post(`${USER_API_END_POINT}/register`, {name, username, email, password}, {
+          headers : {
+            'Content-type':"application/json"
+          },
+          withCredentials:true
+        })
+        if(res.data.success){
+          toast.success(res.data.message)
+        }
       } catch (error) {
-        console.log(error);        
+        toast.success(error.response.data.message)
       }
     }
   }
