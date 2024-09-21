@@ -1,7 +1,34 @@
 import React, { useState } from "react";
+import axios from "axios";
+import {USER_API_END_POINT} from "./../utils/constant.js"
 
 function Login() {
   const [isLogin, setIsLogin] = useState(true);
+
+  const [name, setName] = useState("");
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const submitHandler = async (e) => {
+    e.preventDefault();
+    if(isLogin){
+      try {
+        const res = await axios.post(`${USER_API_END_POINT}/login`, {email, password})
+        console.log(res)
+      } catch (error) {
+        console.log(error);        
+      }
+
+    } else {
+      try {
+        const res = await axios.post(`${USER_API_END_POINT}/register`, {name, username, email, password})
+        console.log(res)
+      } catch (error) {
+        console.log(error);        
+      }
+    }
+  }
 
   const loginSignupHandler = () => {
     setIsLogin(!isLogin);
@@ -27,16 +54,20 @@ function Login() {
           <h1 className="mt-4 mb-2 text-xl sm:text-2xl font-bold text-center">
             {isLogin ? "Login" : "Register"}
           </h1>
-          <form className="flex flex-col w-full max-w-md mx-auto">
+          <form onSubmit={submitHandler} className="flex flex-col w-full max-w-md mx-auto">
             {!isLogin && (
               <>
                 <input
                   type="text"
                   placeholder="Name"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
                   className="outline-blue-500 border border-gray-800 px-3 py-2 rounded-full my-2 font-semibold"
                 />
                 <input
                   type="text"
+                  value={username}
+                  onChange={(e) => setUsername(e.target.value)}
                   placeholder="Username"
                   className="outline-blue-500 border border-gray-800 px-3 py-2 rounded-full my-2 font-semibold"
                 />
@@ -45,11 +76,15 @@ function Login() {
             <input
               type="email"
               placeholder="Email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
               className="outline-blue-500 border border-gray-800 px-3 py-2 rounded-full my-2 font-semibold"
             />
             <input
               type="password"
               placeholder="Password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
               className="outline-blue-500 border border-gray-800 px-3 py-2 rounded-full my-2 font-semibold"
             />
             <button className="bg-[#1D9BF0] border-none py-2 my-4 rounded-full text-lg text-white">
