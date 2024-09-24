@@ -1,4 +1,4 @@
-import mongoose from "mongoose"
+import mongoose from "mongoose";
 
 const userSchema = new mongoose.Schema({
     name:{
@@ -26,11 +26,10 @@ const userSchema = new mongoose.Schema({
     following:{
         type:Array,
         default:[]
-    },
+    }, 
     bookmarks:{
         type:Array,
         default:[]
-    },
-}, {timestamps:true})
-
+    }
+},{timestamps:true});
 export const User = mongoose.model("User", userSchema);
