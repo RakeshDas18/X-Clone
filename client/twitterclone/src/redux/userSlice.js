@@ -4,7 +4,8 @@ const userSlice = createSlice({
     name:"user",
     initialState:{
         user:null,
-        otherUsers:null
+        otherUsers:null,
+        profile:null
     },
     reducers:{
         getUser:(state,action) => {
@@ -12,9 +13,12 @@ const userSlice = createSlice({
         },
         getOtherUser:(state, action) => {
             state.otherUsers = action.payload;
+        },
+        getMyProfile:(state, action) => {
+            state.profile = action.payload;
         }
     }
 })
 
-export const {getUser, getOtherUser} = userSlice.actions;
+export const {getUser, getOtherUser, getMyProfile} = userSlice.actions;
 export  default userSlice.reducer;
