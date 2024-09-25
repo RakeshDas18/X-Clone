@@ -3,7 +3,7 @@ import LeftSiderbar from './LeftSiderbar'
 import RightSidebar from './RightSidebar'
 import { Outlet } from 'react-router-dom'
 import { useSelector } from 'react-redux'
-import useOtherUsers from '../hooks/useOtherUsers.js'
+import useOtherUsers from '../hooks/useOtherUsers'
 
 function Home() {
   //hooks
