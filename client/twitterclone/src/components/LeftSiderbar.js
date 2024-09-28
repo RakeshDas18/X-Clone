@@ -41,7 +41,7 @@ function LeftSiderbar() {
             </div>
             <h1 className="font-bold text-lg ml-2">Bookmarks</h1>
           </div>
-          <Link to={`/profile/${user?.id}`} className="flex items-center my-2 px-4 py-2 hover:bg-gray-200 rounded-full hover:cursor-pointer">
+          <Link to={`/profile/${user?._id}`} className="flex items-center my-2 px-4 py-2 hover:bg-gray-200 rounded-full hover:cursor-pointer">
             <div>
               <CgProfile size={"24px"}/>
             </div>
