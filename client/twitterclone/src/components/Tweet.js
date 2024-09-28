@@ -4,7 +4,7 @@ import { GoBookmark } from "react-icons/go";
 import { CiHeart } from "react-icons/ci";
 import { BiComment } from "react-icons/bi";
 
-function Tweet() {
+function Tweet({tweet}) {
   return (
     <div className="border-b border-gray-200">
       <div>
@@ -20,7 +20,7 @@ function Tweet() {
               <p className="text-gray-500 text-sm ml-1">@RD 1m</p>
             </div>
             <div className="flex items-center">
-              <p>Hello World!</p>
+              <p>{tweet?.description}</p>
             </div>
             <div className="flex justify-between my-3">
               <div className="flex items-center">
