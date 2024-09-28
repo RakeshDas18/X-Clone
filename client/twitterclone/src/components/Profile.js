@@ -6,9 +6,9 @@ import { Link, useParams } from "react-router-dom";
 import useGetProfile from "../hooks/useGetProfile";
 
 function Profile() {
-  const { profile } = useSelector(store => store.user)
+  const { user, profile } = useSelector(store => store.user);
 
-  const {id} = useParams();
+  const { id } = useParams();
   useGetProfile(id);
   return (
     <div className="w-[50%] border-l border-r border-gray-200">
