@@ -4,7 +4,7 @@ import { GoBookmark } from "react-icons/go";
 import { CiHeart } from "react-icons/ci";
 import { BiComment } from "react-icons/bi";
 
-function Tweet({tweet}) {
+const Tweet = ({ tweet }) => {
   return (
     <div className="border-b border-gray-200">
       <div>
@@ -27,7 +27,7 @@ function Tweet({tweet}) {
                 <div className="p-2 hover:bg-green-200 rounded-full cursor-pointer">
                   <CiHeart size="20px" />
                 </div>
-                <p>0</p>
+                <p>{tweet?.like?.length}</p>
               </div>
               <div className="flex items-center">
                 <div className="p-2 hover:bg-green-200 rounded-full cursor-pointer">
