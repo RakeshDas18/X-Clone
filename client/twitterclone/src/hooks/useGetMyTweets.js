@@ -9,7 +9,7 @@ const useGetMyTweets = (id) => {
     useEffect(()=>{
         const fetchMyTweets = async () => {
             try {
-                const res = await axios.get(`${TWEET_API_END_POINT}/tweet/alltweet/${id}`,{
+                const res = await axios.get(`${TWEET_API_END_POINT}/alltweet/${id}`,{
                     withCredentials:true
                 });
                 console.log(res);
