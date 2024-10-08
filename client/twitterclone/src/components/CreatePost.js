@@ -4,20 +4,25 @@ import Avatar from "react-avatar"
 import { CiImageOn } from "react-icons/ci"
 import { TWEET_API_END_POINT } from "../utils/constant";
 import toast from  "react-hot-toast"
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { getRefresh } from '../redux/tweetSlice';
 
 function CreatePost() {
   const [description, setDescription] = useState("");
   const {user} = useSelector(store => store.user);
+  const dispatch = useDispatch();
 
   const submitHandler = async () => {
     try {
-      const res = await axios.post(`${TWEET_API_END_POINT}/create`, {description, id: user?._id}, {
+      const res = await axios.post(`${TWEET_API_END_POINT}/create`, { description, id: user?._id }, {
         headers:{
           "Content-Type":"application/json"
         },
         withCredentials:true
       });
+
+      dispatch(getRefresh());
+
       if(res.data.success){
         toast.success(res.data.message);
       }
