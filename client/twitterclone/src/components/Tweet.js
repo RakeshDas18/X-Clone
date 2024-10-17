@@ -8,6 +8,7 @@ import {TWEET_API_END_POINT} from "../utils/constant";
 import { useDispatch, useSelector } from "react-redux";
 import toast from "react-hot-toast";
 import { getRefresh } from "../redux/tweetSlice";
+import { AiOutlineDelete } from "react-icons/ai";
 
 const Tweet = ({ tweet }) => {
   const {user} = useSelector(store=>store.user);
@@ -22,6 +23,20 @@ const Tweet = ({ tweet }) => {
     } catch (error) {
       toast.error(error.response.data.message);
       console.log(error);      
+    }
+  }
+  const deleteTweetHandler = async(id) => {
+    try {
+      axios.defaults.withCredentials = true
+      const res = await axios.delete(`${TWEET_API_END_POINT}/delete/${id}`)
+      console.log(res);
+      dispatch(getRefresh());
+      toast.success(res.data.message);
+      
+    } catch (error) {
+      console.log(error);
+      toast.error(error.response.data.message)
+      
     }
   }
   return (
@@ -60,6 +75,12 @@ const Tweet = ({ tweet }) => {
                 </div>
                 <p>0</p>
               </div>
+              {user?._id === tweet?.userId && (<div className="flex items-center mr-10">
+                <div onClick={()=>deleteTweetHandler(tweet?._id)} className="p-2 hover:bg-red-400 rounded-full cursor-pointer">
+                  <AiOutlineDelete size="20px" />
+                </div>
+                <p>0</p>
+              </div>)}
             </div>
           </div>
         </div>
