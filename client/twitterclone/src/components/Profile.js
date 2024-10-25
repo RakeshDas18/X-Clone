@@ -6,7 +6,7 @@ import { Link, useParams } from "react-router-dom";
 import useGetProfile from "../hooks/useGetProfile";
 
 function Profile() {
-  const { user, profile } = useSelector(store => store.user);
+  const { user, profile } = useSelector((store) => store.user);
 
   const { id } = useParams();
   useGetProfile(id);
@@ -37,14 +37,20 @@ function Profile() {
           />
         </div>
         <div className="text-right m-4">
-          <button className="px-4 py-1 rounded-full border border-gray-400 hover:bg-gray-200">Edit Profile</button>
+          {
+          profile?._id === user?._id ? (
+            <button className="px-4 py-1 hover:bg-gray-200 rounded-full border border-gray-400">Edit Profile</button>
+          ) : (
+            <button className="px-4 py-1 bg-black text-white rounded-full border border-gray-400">Follow</button>
+          )}
         </div>
         <div className="m-4 mt-6">
           <h1 className="font-bold text-xl">{profile?.name}</h1>
           <p>{`@${profile?.username}`}</p>
         </div>
         <div className="m-4 text-[17px]">
-        Web developer | C, C++, JavaScript, Python, HTML, CSS, and MERN Stack | Currently - Learning NextJs | Memes ❤️
+          Web developer | C, C++, JavaScript, Python, HTML, CSS, and MERN Stack
+          | Currently - Learning NextJs | Memes ❤️
         </div>
       </div>
     </div>
