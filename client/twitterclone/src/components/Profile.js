@@ -1,17 +1,18 @@
 import React from "react";
 import Avatar from "react-avatar";
 import { IoArrowBack } from "react-icons/io5";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link, useParams } from "react-router-dom";
 import useGetProfile from "../hooks/useGetProfile";
 import axios from "axios";
 import { USER_API_END_POINT } from "../utils/constant";
+import { followingUpdate } from "../redux/userSlice";
 import toast from "react-hot-toast";
 
 const Profile = () => {
   const { user, profile } = useSelector((store) => store.user);
-
   const { id } = useParams();
+  const dispatch = useDispatch();
   useGetProfile(id);
 
   const followAndUnfollowHandler = async () => {
@@ -22,6 +23,7 @@ const Profile = () => {
           id: user?._id,
         });
         console.log(res);
+        dispatch(followingUpdate(id));
         toast.success(res.data.message);
       } catch (error) {
         toast.error(error.response.data.message);
@@ -34,6 +36,7 @@ const Profile = () => {
           id: user?._id,
         });
         console.log(res);
+        dispatch(followingUpdate(id));
         toast.success(res.data.message);
       } catch (error) {
         toast.error(error.response.data.message);
