@@ -6,7 +6,7 @@ import { getAllTweets } from "../redux/tweetSlice";
 
 const useGetMyTweets = (id) => {
   const dispatch = useDispatch();
-  const { refresh } = useSelector((store) => store.tweet);
+  const { refresh, isActive } = useSelector((store) => store.tweet);
 
   const fetchMyTweets = async () => {
     try {
@@ -21,6 +21,7 @@ const useGetMyTweets = (id) => {
   };
   const followingTweetHandler = async () => {
     try {
+      axios.defaults.withCredentials = true;
       const res = await axios.get(`${TWEET_API_END_POINT}/following/${id}`);
       console.log(res);
       dispatch(getAllTweets(res.data.message));
@@ -29,7 +30,11 @@ const useGetMyTweets = (id) => {
     }
   };
   useEffect(() => {
-    fetchMyTweets();
-  }, [id, refresh, dispatch]);
+    if(isActive){
+      fetchMyTweets();
+    } else {
+      followingTweetHandler();
+    }
+  }, [id, isActive, refresh, dispatch]);
 };
 export default useGetMyTweets;
