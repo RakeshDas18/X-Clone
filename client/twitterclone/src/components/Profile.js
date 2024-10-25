@@ -4,12 +4,43 @@ import { IoArrowBack } from "react-icons/io5";
 import { useSelector } from "react-redux";
 import { Link, useParams } from "react-router-dom";
 import useGetProfile from "../hooks/useGetProfile";
+import axios from "axios";
+import { USER_API_END_POINT } from "../utils/constant";
+import toast from "react-hot-toast";
 
-function Profile() {
+const Profile = () => {
   const { user, profile } = useSelector((store) => store.user);
 
   const { id } = useParams();
   useGetProfile(id);
+
+  const followAndUnfollowHandler = async () => {
+    if (user.following.includes(id)) {
+      try {
+        axios.defaults.withCredentials = true;
+        const res = await axios.post(`${USER_API_END_POINT}/unfollow/${id}`, {
+          id: user?._id,
+        });
+        console.log(res);
+        toast.success(res.data.message);
+      } catch (error) {
+        toast.error(error.response.data.message);
+        console.log(error);
+      }
+    } else {
+      try {
+        axios.defaults.withCredentials = true;
+        const res = await axios.post(`${USER_API_END_POINT}/follow/${id}`, {
+          id: user?._id,
+        });
+        console.log(res);
+        toast.success(res.data.message);
+      } catch (error) {
+        toast.error(error.response.data.message);
+        console.log(error);
+      }
+    }
+  };
   return (
     <div className="w-[50%] border-l border-r border-gray-200">
       <div>
@@ -37,11 +68,17 @@ function Profile() {
           />
         </div>
         <div className="text-right m-4">
-          {
-          profile?._id === user?._id ? (
-            <button className="px-4 py-1 hover:bg-gray-200 rounded-full border border-gray-400">Edit Profile</button>
+          {profile?._id === user?._id ? (
+            <button className="px-4 py-1 hover:bg-gray-200 rounded-full border border-gray-400">
+              Edit Profile
+            </button>
           ) : (
-            <button className="px-4 py-1 bg-black text-white rounded-full border border-gray-400">Follow</button>
+            <button
+              onClick={followAndUnfollowHandler}
+              className="px-4 py-1 bg-black text-white rounded-full border border-gray-400"
+            >
+              {user.following.includes(id) ? "Following" : "Follow"}
+            </button>
           )}
         </div>
         <div className="m-4 mt-6">
@@ -55,6 +92,6 @@ function Profile() {
       </div>
     </div>
   );
-}
+};
 
 export default Profile;
