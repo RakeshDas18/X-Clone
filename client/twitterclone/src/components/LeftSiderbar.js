@@ -6,17 +6,22 @@ import { FaRegBookmark } from "react-icons/fa";
 import { CgProfile } from "react-icons/cg";
 import { MdOutlineLogout } from "react-icons/md";
 import { Link, useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import axios from "axios"
 import {USER_API_END_POINT} from "../utils/constant"
 import toast from "react-hot-toast"
+import { getMyProfile, getOtherUser, getUser } from "../redux/userSlice";
 
 function LeftSiderbar() {
   const { user } = useSelector(store => store.user);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const logoutHandler = async() =>{
     try {
       const res = await axios.get(`${USER_API_END_POINT}/logout`);
+      dispatch(getUser(null));
+      dispatch(getOtherUser(null));
+      dispatch(getMyProfile(null));
       navigate('/login')
       toast.success(res.data.message);
     } catch (error) {
@@ -60,7 +65,7 @@ function LeftSiderbar() {
             </div>
             <h1 className="font-bold text-lg ml-2">Profile</h1>
           </Link>
-          <div onClick={logoutHandler()} className="flex items-center my-2 px-4 py-2 hover:bg-gray-200 rounded-full hover:cursor-pointer">
+          <div onClick={logoutHandler} className="flex items-center my-2 px-4 py-2 hover:bg-gray-200 rounded-full hover:cursor-pointer">
             <div>
               <MdOutlineLogout size={"24px"}/>
             </div>
