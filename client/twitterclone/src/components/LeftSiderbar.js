@@ -5,11 +5,24 @@ import { IoMdNotificationsOutline } from "react-icons/io";
 import { FaRegBookmark } from "react-icons/fa";
 import { CgProfile } from "react-icons/cg";
 import { MdOutlineLogout } from "react-icons/md";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
+import axios from "axios"
+import {USER_API_END_POINT} from "../utils/constant"
+import toast from "react-hot-toast"
 
 function LeftSiderbar() {
   const { user } = useSelector(store => store.user);
+  const navigate = useNavigate();
+  const logoutHandler = async() =>{
+    try {
+      const res = await axios.get(`${USER_API_END_POINT}/logout`);
+      navigate('/login')
+      toast.success(res.data.message);
+    } catch (error) {
+      console.log(error);      
+    }
+  }
   return (
     <div className="w-[20%]">
       <div>
@@ -47,7 +60,7 @@ function LeftSiderbar() {
             </div>
             <h1 className="font-bold text-lg ml-2">Profile</h1>
           </Link>
-          <div className="flex items-center my-2 px-4 py-2 hover:bg-gray-200 rounded-full hover:cursor-pointer">
+          <div onClick={logoutHandler()} className="flex items-center my-2 px-4 py-2 hover:bg-gray-200 rounded-full hover:cursor-pointer">
             <div>
               <MdOutlineLogout size={"24px"}/>
             </div>
