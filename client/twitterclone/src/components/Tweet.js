@@ -4,18 +4,31 @@ import { GoBookmark } from "react-icons/go";
 import { CiHeart } from "react-icons/ci";
 import { BiComment } from "react-icons/bi";
 import axios from "axios";
-import {timeSince, TWEET_API_END_POINT} from "../utils/constant";
+import {timeSince, TWEET_API_END_POINT, USER_API_END_POINT} from "../utils/constant";
 import { useDispatch, useSelector } from "react-redux";
 import toast from "react-hot-toast";
 import { getRefresh } from "../redux/tweetSlice";
 import { AiOutlineDelete } from "react-icons/ai";
+import { FaBookmark } from "react-icons/fa";
 
 const Tweet = ({ tweet }) => {
   const {user} = useSelector(store=>store.user);
   const dispatch = useDispatch();
   const likeOrDislikeHandler = async (id) => {
     try {
-      const res = await axios.put(`${TWEET_API_END_POINT}/like/${id}`, {id:user?._id}, {
+      const res = await axios.put(`${TWEET_API_END_POINT}/like/${tweet?._id}`, {id:user?._id}, {
+        withCredentials:true
+      })
+      dispatch(getRefresh())
+      toast.success(res.data.message);
+    } catch (error) {
+      toast.error(error.response.data.message);
+      console.log(error);      
+    }
+  }
+  const bookmarkHandler = async (id) => {
+    try {
+      const res = await axios.put(`${USER_API_END_POINT}/bookmark/${id}`, {id:user?._id}, {
         withCredentials:true
       })
       dispatch(getRefresh())
@@ -69,11 +82,11 @@ const Tweet = ({ tweet }) => {
                 </div>
                 <p>0</p>
               </div>
-              <div className="flex items-center mr-10">
+              <div onClick={()=>bookmarkHandler(tweet?._id)} className="flex items-center mr-10">
                 <div className="p-2 hover:bg-green-200 rounded-full cursor-pointer">
                   <GoBookmark size="20px" />
                 </div>
-                <p>0</p>
+                <p>{user?.bookmarks?.length}</p>
               </div>
               {user?._id === tweet?.userId && (<div className="flex items-center mr-10">
                 <div onClick={()=>deleteTweetHandler(tweet?._id)} className="p-2 hover:bg-red-400 rounded-full cursor-pointer">
